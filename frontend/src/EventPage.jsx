@@ -11,22 +11,22 @@ export default function EventPage() {
   const [error, setError] = useState("");
 
   useEffect(() => {
-    fetchEventsByCity();
-  }, [city, fetchEventsByCity]);
+    const fetchEventsByCity = async () => {
+      try {
+        setLoading(true);
+        const response = await getEventsByCity(city);
+        setEvents(response.data.events);
+        setError("");
+      } catch (err) {
+        setError(err.response?.data?.message || "Failed to load events");
+        setEvents([]);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-  const fetchEventsByCity = async () => {
-    try {
-      setLoading(true);
-      const response = await getEventsByCity(city);
-      setEvents(response.data.events);
-      setError("");
-    } catch (err) {
-      setError(err.response?.data?.message || "Failed to load events");
-      setEvents([]);
-    } finally {
-      setLoading(false);
-    }
-  };
+    fetchEventsByCity();
+  }, [city]);
 
   const styles = {
     container: {
