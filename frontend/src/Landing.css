@@ -1,0 +1,119 @@
+/* -------- FULL PAGE FIX -------- */
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  font-family: 'Arial', sans-serif;
+}
+
+/* Wrapper so footer stays at bottom */
+.landing-page {
+  width: 95%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* -------- HERO SECTION (MAIN SCREEN) -------- */
+.hero {
+  width: 100%;
+  min-height: 90vh;                 /* prevents overflow */
+  background: linear-gradient(90deg, #111111, #174731);
+  color: white;
+  padding: 30px 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Navbar */
+.hero-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+  padding: 2px 2px;
+}
+
+.logo {
+  font-size: 28px;
+  font-weight: bold;
+}
+
+/* Hero content centered properly */
+.hero-content {
+  text-align: center;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.nav-buttons {
+  display: flex;
+  gap: 15px;   /* 👉 space between Login & Register */
+}
+
+/* Text sizes */
+.hero-content h1 {
+  font-size: 48px;
+  margin-bottom: 15px;
+}
+
+.hero-content p {
+  font-size: 20px;
+  margin-bottom: 25px;
+}
+
+/* Buttons */
+.btn {
+  display: inline-block;
+  background-color: #fff;
+  color: #182848;
+  padding: 12px 30px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.3s;
+  border: none;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #f0f0f0;
+}
+
+.btn-light {
+  background-color: white;
+  color: #0a0b0f;
+}
+
+/* -------- FOOTER (STAYS AT BOTTOM) -------- */
+.footer {
+  width: 100%;
+  text-align: center;
+  padding: 15px 20px;
+  background-color: #1a1a1a;  /* deep black-green */
+  color: #cfcfcf;
+  font-size: 14px;
+  position: relative;
+  bottom: 0;
+}
+
+
+/* -------- MOBILE RESPONSIVE -------- */
+@media (max-width: 768px) {
+
+  .hero-nav {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .hero-content h1 {
+    font-size: 36px;
+  }
+
+  .hero-content p {
+    font-size: 18px;
+  }
+}
