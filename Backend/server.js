@@ -10,7 +10,10 @@ const app = express();
 
 // Apply middleware first
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+  origin:"* ", 
+  credentials: true
+}));
 
 // Then connect to database
 connectDB();

@@ -1,7 +1,8 @@
 import axios from "axios";
 
-const AUTH_API = "http://localhost:5000/api/auth";
-const EVENTS_API = "http://localhost:5000/api/events";
+const API_BASE_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
+const AUTH_API = `${API_BASE_URL}/api/auth`;
+const EVENTS_API = `${API_BASE_URL}/api/events`;
 
 // Auth endpoints
 export const registerUser = (data) =>
