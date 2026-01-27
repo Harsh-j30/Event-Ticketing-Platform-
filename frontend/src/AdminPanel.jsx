@@ -41,7 +41,6 @@ export default function AdminPanel() {
       const res = await verifyAdmin();
       if (res.data.isAdmin) {
         setIsAuthorized(true);
-        setAdminEmail(email);
       } else {
         throw new Error("Unauthorized");
       }
