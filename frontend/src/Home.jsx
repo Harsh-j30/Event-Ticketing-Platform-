@@ -161,15 +161,7 @@ citiesGrid: {
   width: "120px",
   height: "120px",
   objectFit: "cover",
-  borderRadius: "50%",   // <-- makes circle
-  marginBottom: "10px",
-  transition: "transform 0.3s",
-},
-cityImage: {
-  width: "120px",
-  height: "120px",
-  objectFit: "cover",
-  borderRadius: "50%",   
+  borderRadius: "50%",
   marginBottom: "10px",
   transition: "transform 0.3s",
 },

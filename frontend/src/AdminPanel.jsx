@@ -30,7 +30,6 @@ export default function AdminPanel() {
   const checkAdminAuthorization = useCallback(async () => {
     try {
       const token = localStorage.getItem("adminToken");
-      const email = localStorage.getItem("adminEmail");
 
       if (!token) {
         setIsAuthorized(false);

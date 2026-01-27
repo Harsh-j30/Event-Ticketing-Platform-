@@ -12,7 +12,7 @@ export default function EventPage() {
 
   useEffect(() => {
     fetchEventsByCity();
-  }, [city]);
+  }, [city, fetchEventsByCity]);
 
   const fetchEventsByCity = async () => {
     try {
