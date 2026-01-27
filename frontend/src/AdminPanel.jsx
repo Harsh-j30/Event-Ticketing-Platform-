@@ -6,7 +6,6 @@ import { ArrowLeft, Lock } from "lucide-react";
 export default function AdminPanel() {
   const navigate = useNavigate();
   const [isAuthorized, setIsAuthorized] = useState(null);
-  const [adminEmail, setAdminEmail] = useState("");
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");

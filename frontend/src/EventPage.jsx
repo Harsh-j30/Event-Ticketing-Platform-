@@ -6,28 +6,27 @@ import { getEventsByCity } from "./services/api";
 export default function EventPage() {
   const { city } = useParams();
   const navigate = useNavigate();
-
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
   useEffect(() => {
-    const fetchEventsByCity = async () => {
-      try {
-        setLoading(true);
-        const response = await getEventsByCity(city);
-        setEvents(response.data.events);
-        setError("");
-      } catch (err) {
-        setError(err.response?.data?.message || "Failed to load events");
-        setEvents([]);
-      } finally {
-        setLoading(false);
-      }
-    };
-
     fetchEventsByCity();
   }, [city]);
+
+  const fetchEventsByCity = async () => {
+    try {
+      setLoading(true);
+      const response = await getEventsByCity(city);
+      setEvents(response.data.events);
+      setError("");
+    } catch (err) {
+      setError(err.response?.data?.message || "Failed to load events");
+      setEvents([]);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const styles = {
     container: {
@@ -38,6 +37,7 @@ export default function EventPage() {
     navbar: {
       padding: "15px 20px",
       background: "#282c34",
+      color: "white",
       display: "flex",
       justifyContent: "space-between",
       alignItems: "center",
@@ -55,6 +55,7 @@ export default function EventPage() {
       color: "white",
       textDecoration: "none",
       cursor: "pointer",
+      transition: "opacity 0.3s",
     },
     backBtn: {
       background: "transparent",
@@ -66,6 +67,7 @@ export default function EventPage() {
       gap: "8px",
       fontSize: "16px",
       fontWeight: "600",
+      transition: "opacity 0.3s",
     },
     header: {
       padding: "30px 20px",
@@ -97,14 +99,19 @@ export default function EventPage() {
       background: "#2a2a2a",
       borderRadius: "12px",
       overflow: "hidden",
+      transition: "transform 0.3s, box-shadow 0.3s",
       cursor: "pointer",
       boxShadow: "0 4px 15px rgba(0, 0, 0, 0.3)",
-      transition: "transform 0.3s, box-shadow 0.3s",
+    },
+    eventCardHover: {
+      transform: "translateY(-8px)",
+      boxShadow: "0 8px 25px rgba(102, 126, 234, 0.3)",
     },
     eventImage: {
       width: "100%",
       height: "250px",
       objectFit: "cover",
+      background: "#1a1a1a",
     },
     eventInfo: {
       padding: "20px",
@@ -122,12 +129,14 @@ export default function EventPage() {
       lineHeight: "1.6",
       maxHeight: "60px",
       overflow: "hidden",
+      textOverflow: "ellipsis",
     },
     eventDetails: {
       display: "flex",
       flexDirection: "column",
       gap: "10px",
       marginBottom: "15px",
+      fontSize: "14px",
     },
     detailItem: {
       display: "flex",
@@ -155,27 +164,51 @@ export default function EventPage() {
       borderRadius: "8px",
       cursor: "pointer",
       fontWeight: "600",
+      transition: "background 0.3s",
     },
     emptyState: {
       textAlign: "center",
       padding: "60px 20px",
     },
+    emptyTitle: {
+      fontSize: "24px",
+      fontWeight: "bold",
+      marginBottom: "10px",
+    },
+    emptyMessage: {
+      fontSize: "16px",
+      color: "#aaa",
+      marginBottom: "30px",
+    },
     errorMessage: {
       background: "#dc2626",
       color: "white",
-      padding: "15px",
+      padding: "15px 20px",
       borderRadius: "8px",
       marginBottom: "20px",
       textAlign: "center",
+    },
+    loadingSpinner: {
+      textAlign: "center",
+      padding: "60px 20px",
+      fontSize: "18px",
+      color: "#aaa",
     },
   };
 
   return (
     <div style={styles.container}>
+      {/* Navbar */}
       <nav style={styles.navbar}>
         <div style={styles.navLeft}>
-          <button style={styles.backBtn} onClick={() => navigate("/home")}>
-            <ArrowLeft size={20} /> Back
+          <button
+            style={styles.backBtn}
+            onClick={() => navigate("/home")}
+            onMouseEnter={(e) => (e.target.style.opacity = "0.7")}
+            onMouseLeave={(e) => (e.target.style.opacity = "1")}
+          >
+            <ArrowLeft size={20} />
+            Back
           </button>
           <span style={styles.navBrand}>Event Platform</span>
           <a style={styles.navLink} href="/events-all">Events</a>
@@ -183,56 +216,87 @@ export default function EventPage() {
         </div>
       </nav>
 
+      {/* Header */}
       <div style={styles.header}>
         <h1 style={styles.title}>Events in {city}</h1>
-        <p style={styles.subtitle}>Discover amazing events near you</p>
+        <p style={styles.subtitle}>Discover amazing events happening near you</p>
       </div>
 
+      {/* Content */}
       <div style={styles.content}>
         {error && <div style={styles.errorMessage}>{error}</div>}
 
         {loading ? (
-          <div style={{ textAlign: "center" }}>Loading events...</div>
+          <div style={styles.loadingSpinner}>Loading events...</div>
         ) : events.length === 0 ? (
           <div style={styles.emptyState}>
-            <h2>No Events Found</h2>
-            <p>No events available in {city}</p>
-            <button style={styles.bookBtn} onClick={() => navigate("/home")}>
+            <h2 style={styles.emptyTitle}>No Events Found</h2>
+            <p style={styles.emptyMessage}>
+              There are currently no events available in {city}. Please check back soon!
+            </p>
+            <button
+              style={{
+                ...styles.bookBtn,
+                padding: "12px 30px",
+                fontSize: "16px",
+              }}
+              onClick={() => navigate("/home")}
+            >
               Back to Home
             </button>
           </div>
         ) : (
           <div style={styles.eventsGrid}>
             {events.map((event) => (
-              <div key={event._id} style={styles.eventCard}>
+              <div
+                key={event._id}
+                style={styles.eventCard}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = "translateY(-8px)";
+                  e.currentTarget.style.boxShadow =
+                    "0 8px 25px rgba(102, 126, 234, 0.3)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = "translateY(0)";
+                  e.currentTarget.style.boxShadow = "0 4px 15px rgba(0, 0, 0, 0.3)";
+                }}
+              >
                 <img
                   src={event.image}
                   alt={event.name}
                   style={styles.eventImage}
                   onError={(e) => {
-                    e.target.src =
-                      "https://via.placeholder.com/350x250?text=Event+Image";
+                    e.target.src = "https://via.placeholder.com/350x250?text=Event+Image";
                   }}
                 />
-
                 <div style={styles.eventInfo}>
                   <h3 style={styles.eventName}>{event.name}</h3>
                   <p style={styles.eventDescription}>{event.description}</p>
 
                   <div style={styles.eventDetails}>
                     <div style={styles.detailItem}>
-                      <MapPin size={16} /> {event.location}
+                      <MapPin size={16} />
+                      {event.location}
                     </div>
                     <div style={styles.detailItem}>
                       <Calendar size={16} />
-                      {new Date(event.date).toLocaleDateString("en-IN")}
+                      {new Date(event.date).toLocaleDateString("en-IN", {
+                        year: "numeric",
+                        month: "short",
+                        day: "numeric",
+                      })}
                     </div>
                   </div>
 
                   <div style={styles.priceSection}>
                     <div style={styles.price}>₹{event.price}</div>
-                    <button style={styles.bookBtn}>
-                      <Ticket size={16} /> Book Now
+                    <button
+                      style={styles.bookBtn}
+                      onMouseEnter={(e) => (e.target.style.background = "#5568d3")}
+                      onMouseLeave={(e) => (e.target.style.background = "#667eea")}
+                    >
+                      <Ticket size={16} style={{ marginRight: "5px" }} />
+                      Book Now
                     </button>
                   </div>
                 </div>
