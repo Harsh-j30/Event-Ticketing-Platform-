@@ -222,24 +222,89 @@ export default function AdminPanel() {
         {message && <p style={styles.success}>{message}</p>}
 
         <form onSubmit={handleSubmit} style={styles.form}>
-          <input name="name" placeholder="Event Name" value={formData.name} onChange={handleInputChange} style={styles.input} />
+          <div style={styles.inputContainer}>
+            <input 
+              name="name" 
+              placeholder="Event Name" 
+              value={formData.name} 
+              onChange={handleInputChange} 
+              style={styles.input}
+            />
+          </div>
 
-          <select name="city" value={formData.city} onChange={handleInputChange} style={styles.input}>
-            <option value="">Select City</option>
-            {cities.map(c => <option key={c}>{c}</option>)}
-          </select>
+          <div style={styles.inputContainer}>
+            <select 
+              name="city" 
+              value={formData.city} 
+              onChange={handleInputChange} 
+              style={styles.inputSelect}
+            >
+              <option value="">Select City</option>
+              {cities.map(c => <option key={c} value={c}>{c}</option>)}
+            </select>
+          </div>
 
-          <textarea name="description" placeholder="Description" value={formData.description} onChange={handleInputChange} style={styles.textarea} />
+          <div style={styles.inputContainer}>
+            <textarea 
+              name="description" 
+              placeholder="Description" 
+              value={formData.description} 
+              onChange={handleInputChange} 
+              style={{...styles.textarea, padding: "12px"}}
+            />
+          </div>
 
-          <input name="image" placeholder="Image URL" value={formData.image} onChange={handleInputChange} style={styles.input} />
+          <div style={styles.inputContainer}>
+            <input 
+              name="image" 
+              placeholder="Image URL" 
+              value={formData.image} 
+              onChange={handleInputChange} 
+              style={styles.input}
+            />
+          </div>
 
-          <input name="price" type="number" placeholder="Price" value={formData.price} onChange={handleInputChange} style={styles.input} />
+          <div style={styles.inputContainer}>
+            <input 
+              name="price" 
+              type="number" 
+              placeholder="Ticket Price (₹)" 
+              value={formData.price} 
+              onChange={handleInputChange} 
+              style={styles.input}
+            />
+          </div>
 
-          <input name="date" type="datetime-local" value={formData.date} onChange={handleInputChange} style={styles.input} />
+          <div style={styles.inputContainer}>
+            <input 
+              name="date" 
+              type="datetime-local" 
+              value={formData.date} 
+              onChange={handleInputChange} 
+              style={styles.input}
+            />
+          </div>
 
-          <input name="location" placeholder="Location" value={formData.location} onChange={handleInputChange} style={styles.input} />
+          <div style={styles.inputContainer}>
+            <input 
+              name="location" 
+              placeholder="Location/Venue" 
+              value={formData.location} 
+              onChange={handleInputChange} 
+              style={styles.input}
+            />
+          </div>
 
-          <button disabled={loading} style={styles.submitBtn}>
+          <button 
+            disabled={loading} 
+            style={{
+              ...styles.submitBtn,
+              opacity: loading ? 0.7 : 1,
+              cursor: loading ? "not-allowed" : "pointer"
+            }}
+            onMouseEnter={(e) => !loading && (e.target.style.background = "#0d3a28")}
+            onMouseLeave={(e) => !loading && (e.target.style.background = "#0e4231")}
+          >
             {loading ? "Creating..." : "Create Event"}
           </button>
         </form>
@@ -253,76 +318,115 @@ export default function AdminPanel() {
 const styles = {
   page: {
     minHeight: "100vh",
-    background: "linear-gradient(135deg, #0A0A0A, #0e4231)",
+    background: "linear-gradient(135deg, #0A0A0A 10%, #0e4231 90%)",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    padding: "30px",
+    padding: "20px",
     color: "white",
   },
   card: {
     width: "100%",
-    maxWidth: "600px",
-    background: "#1f1f1f",
-    borderRadius: "16px",
-    padding: "30px",
-    boxShadow: "0 10px 30px rgba(0,0,0,0.5)",
+    maxWidth: "550px",
+    background: "rgba(10,10,10,0.9)",
+    borderRadius: "12px",
+    padding: "40px",
+    boxShadow: "0 10px 40px rgba(0,0,0,0.7)",
   },
   backBtn: {
     background: "transparent",
     border: "none",
-    color: "#aaa",
+    color: "#0e4231",
     cursor: "pointer",
-    marginBottom: "15px",
+    marginBottom: "20px",
     display: "flex",
     alignItems: "center",
-    gap: "6px",
+    gap: "8px",
+    fontSize: "16px",
+    fontWeight: "500",
+    transition: "color 0.3s ease",
   },
   title: {
     textAlign: "center",
-    marginBottom: "20px",
+    marginBottom: "25px",
+    fontSize: "28px",
+    fontWeight: "700",
+    color: "#00d4ff",
   },
   form: {
     display: "grid",
-    gap: "15px",
+    gap: "18px",
+  },
+  inputContainer: {
+    display: "flex",
+    alignItems: "center",
+    background: "white",
+    borderRadius: "8px",
+    padding: "12px",
+    transition: "box-shadow 0.3s ease",
   },
   input: {
-    padding: "12px",
+    width: "100%",
+    padding: "10px 12px",
     borderRadius: "8px",
-    border: "1px solid #333",
-    background: "#111",
-    color: "white",
+    border: "none",
+    outline: "none",
+    fontSize: "14px",
+    color: "#000",
+    background: "white",
+  },
+  inputSelect: {
+    width: "100%",
+    padding: "10px 12px",
+    borderRadius: "8px",
+    border: "none",
+    outline: "none",
+    fontSize: "14px",
+    color: "#000",
+    background: "white",
   },
   textarea: {
+    width: "100%",
     padding: "12px",
     borderRadius: "8px",
-    border: "1px solid #333",
-    background: "#111",
-    color: "white",
+    border: "none",
+    outline: "none",
+    fontSize: "14px",
+    color: "#000",
+    background: "white",
     minHeight: "100px",
     resize: "vertical",
+    fontFamily: "inherit",
   },
   submitBtn: {
-    marginTop: "10px",
+    marginTop: "15px",
     padding: "12px",
-    borderRadius: "10px",
+    borderRadius: "8px",
     border: "none",
-    background: "#667eea",
+    background: "#0e4231",
     color: "white",
     fontWeight: "600",
     cursor: "pointer",
+    fontSize: "16px",
+    transition: "background 0.3s ease, transform 0.2s ease",
   },
   error: {
     background: "#dc2626",
-    padding: "10px",
+    padding: "12px",
     borderRadius: "8px",
     textAlign: "center",
+    marginBottom: "15px",
+    fontSize: "14px",
+    fontWeight: "500",
   },
   success: {
     background: "#16a34a",
-    padding: "10px",
+    padding: "12px",
     borderRadius: "8px",
     textAlign: "center",
+    marginBottom: "15px",
+    fontSize: "14px",
+    fontWeight: "500",
   },
   centered: {
     minHeight: "100vh",
@@ -331,5 +435,6 @@ const styles = {
     alignItems: "center",
     justifyContent: "center",
     color: "white",
+    background: "linear-gradient(135deg, #0A0A0A 10%, #0e4231 90%)",
   },
 };

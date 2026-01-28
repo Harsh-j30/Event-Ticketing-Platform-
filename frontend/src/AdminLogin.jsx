@@ -114,6 +114,7 @@ export default function AdminLogin() {
               <input
                 type="email"
                 name="email"
+                placeholder="Enter your email"
                 value={formData.email}
                 onChange={handleInputChange}
                 style={styles.input}
@@ -127,6 +128,7 @@ export default function AdminLogin() {
               <input
                 type="password"
                 name="password"
+                placeholder="Enter your password"
                 value={formData.password}
                 onChange={handleInputChange}
                 style={styles.input}
