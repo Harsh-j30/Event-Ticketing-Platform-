@@ -336,14 +336,14 @@ const styles = {
   backBtn: {
     background: "transparent",
     border: "none",
-    color: "#119669",
+    color: "#3df83d",
     cursor: "pointer",
     marginBottom: "20px",
     display: "flex",
     alignItems: "center",
     gap: "8px",
-    fontSize: "16px",
-    fontWeight: "500",
+    fontSize: "18px",
+    fontWeight: "550",
     transition: "color 0.3s ease",
   },
   title: {
@@ -351,7 +351,7 @@ const styles = {
     marginBottom: "25px",
     fontSize: "28px",
     fontWeight: "700",
-    color: "#15eb5c",
+    color: "white",
   },
   form: {
     display: "grid",
@@ -386,7 +386,7 @@ input: {
   outline: "none",
   fontSize: "14px",
   color: "white",
-  background: "#1f2937", 
+  background: "transparent", 
 },
 
   textarea: {
@@ -397,7 +397,7 @@ input: {
   outline: "none",
   fontSize: "14px",
   color: "white",
-  background: "#1f2937",
+  background: "transparent",
   minHeight: "100px",
   resize: "vertical",
   fontFamily: "inherit",

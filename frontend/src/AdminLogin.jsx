@@ -55,7 +55,7 @@ export default function AdminLogin() {
             <input
               type="email"
               name="email"
-              placeholder="admin@email.com"
+              placeholder="Enter admin email"
               value={formData.email}
               onChange={handleInputChange}
               style={styles.input}
