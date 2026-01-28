@@ -385,7 +385,7 @@ input: {
   border: "none",
   outline: "none",
   fontSize: "14px",
-  color: "white",
+  color: "#493f3f",
   background: "transparent", 
 },
 
