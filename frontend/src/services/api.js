@@ -16,6 +16,9 @@ export const adminLogin = (data) =>
 
 export const verifyAdmin = () => {
   const adminToken = localStorage.getItem("adminToken");
+  if (!adminToken) {
+    return Promise.reject(new Error("No admin token found"));
+  }
   return axios.get(`${AUTH_API}/verify-admin`, {
     headers: {
       Authorization: `Bearer ${adminToken}`,
@@ -38,13 +41,19 @@ export const getEventById = (id) =>
 
 export const createEvent = (data) => {
   const adminToken = localStorage.getItem("adminToken");
+  if (!adminToken) {
+    return Promise.reject(new Error("No admin token found"));
+  }
   return axios.post(`${EVENTS_API}/`, data, {
     headers: {
       Authorization: `Bearer ${adminToken}`,
     },
   });
 };
-
+if (!adminToken) {
+    return Promise.reject(new Error("No admin token found"));
+  }
+  
 export const updateEvent = (id, data) => {
   const adminToken = localStorage.getItem("adminToken");
   return axios.put(`${EVENTS_API}/${id}`, data, {
@@ -53,7 +62,10 @@ export const updateEvent = (id, data) => {
     },
   });
 };
-
+if (!adminToken) {
+    return Promise.reject(new Error("No admin token found"));
+  }
+  
 export const deleteEvent = (id) => {
   const adminToken = localStorage.getItem("adminToken");
   return axios.delete(`${EVENTS_API}/${id}`, {

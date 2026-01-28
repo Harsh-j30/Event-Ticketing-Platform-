@@ -77,9 +77,12 @@ exports.adminLogin = async (req, res) => {
     );
 
     res.json({ 
-      adminToken, 
-      adminId: user._id,
-      adminEmail: user.email,
+      token: adminToken, 
+      admin: {
+        _id: user._id,
+        email: user.email,
+        name: user.name
+      },
       message: "Admin login successful" 
     });
   } catch (error) {
@@ -103,7 +106,7 @@ exports.verifyAdmin = async (req, res) => {
       return res.status(403).json({ isAdmin: false, message: "Not authorized as admin" });
     }
 
-    res.json({ isAdmin: true, adminId: user._id, adminEmail: user.email });
+    res.json({ isAdmin: true });
   } catch (error) {
     res.status(401).json({ isAdmin: false, message: "Invalid or expired token" });
   }
