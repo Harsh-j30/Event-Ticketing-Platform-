@@ -351,7 +351,7 @@ const styles = {
     marginBottom: "25px",
     fontSize: "28px",
     fontWeight: "700",
-    color: "#d68dec",
+    color: "#15eb5c",
   },
   form: {
     display: "grid",
@@ -361,10 +361,10 @@ const styles = {
  inputContainer: {
   display: "flex",
   alignItems: "center",
-  background: "#2a2a2a", 
+  background: "black", 
   borderRadius: "8px",
   padding: "12px",
-  border: "1px solid #585d66",
+  border: "none",
 },
 
 input: {
@@ -374,7 +374,7 @@ input: {
   border: "none",
   outline: "none",
   fontSize: "14px",
-  color: "#e5e7eb",          
+  color: "white",          
   background: "transparent", 
 },
 
@@ -385,7 +385,7 @@ input: {
   border: "none",
   outline: "none",
   fontSize: "14px",
-  color: "#e5e7eb",
+  color: "white",
   background: "#1f2937", 
 },
 
@@ -396,7 +396,7 @@ input: {
   border: "none",
   outline: "none",
   fontSize: "14px",
-  color: "#e5e7eb",
+  color: "white",
   background: "#1f2937",
   minHeight: "100px",
   resize: "vertical",
