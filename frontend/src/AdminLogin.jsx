@@ -83,7 +83,7 @@ export default function AdminLogin() {
           <button
             type="button"
             style={styles.backBtn}
-            onClick={() => navigate("/")}
+            onClick={() => navigate("/home")}
           >
             Back to Home
           </button>

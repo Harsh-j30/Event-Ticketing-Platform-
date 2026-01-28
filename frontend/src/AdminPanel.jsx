@@ -213,7 +213,7 @@ export default function AdminPanel() {
     <div style={styles.page}>
       <div style={styles.card}>
         <button style={styles.backBtn} onClick={() => navigate("/home")}>
-          <ArrowLeft size={18} /> Back
+          <ArrowLeft size={20} /> Back
         </button>
 
         <h2 style={styles.title}>Add New Event</h2>
@@ -336,7 +336,7 @@ const styles = {
   backBtn: {
     background: "transparent",
     border: "none",
-    color: "#0e4231",
+    color: "#119669",
     cursor: "pointer",
     marginBottom: "20px",
     display: "flex",
@@ -357,10 +357,11 @@ const styles = {
     display: "grid",
     gap: "18px",
   },
+
  inputContainer: {
   display: "flex",
   alignItems: "center",
-  background: "#2d353f", 
+  background: "#2a2a2a", 
   borderRadius: "8px",
   padding: "12px",
   border: "1px solid #585d66",
